@@ -1,0 +1,44 @@
+{
+   "Module":{
+      "P1":[
+         "TempExt",
+         "Temperature Exterieure",
+         "Thermo.png",
+         "Balcon",
+         "Temperature",
+         "°C"
+      ],
+      "P2":[
+         "TempSalon",
+         "Temperature Salon",
+         "Thermo.png",
+         "Salon",
+         "Temperature",
+         "°C"
+      ],
+       "P3":[
+         "TempChambre",
+         "Temperature Chambre",
+         "Thermo.png",
+         "Chambre",
+         "Temperature",
+         "°C"
+      ],
+       "P4":[
+         "HumidBalcon",
+         "Humidite Balcon",
+         "Humidity.png",
+         "Balcon",
+         "Humidity",
+         "%"
+      ],
+       "P5":[
+         "HumidChambre",
+         "Humidite Chambre",
+         "Humidity.png",
+         "Chambre",
+         "Humidity",
+         "%"
+      ]
+   }
+}
