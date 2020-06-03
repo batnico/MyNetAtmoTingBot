@@ -1,0 +1,13 @@
+# mandatory, see https://dev.netatmo.com/myaccount for creating one
+CLIENT_ID="5ecfb67a0c926451d472775b"
+CLIENT_SECRET="CyIFp7DcOtByQ3MufIpSBGjN8RRH2LcTM"
+
+# mandatory if you don't have a valid access token for this ap
+USER="nico@nicholas-etienne.com"
+PASSWORD="nicoetie"
+
+# where to write the rrd data files
+#DATA_DIR=/your/path/to/store/the/rrd/files
+
+# where to write the rrd graph files
+#GRAPH_DIR=/your/path/to/store/the/graphs
