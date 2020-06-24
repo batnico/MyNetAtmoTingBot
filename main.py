@@ -15,11 +15,11 @@ import lnetatmo
 authorization = lnetatmo.ClientAuth()
 devList = lnetatmo.WeatherStationData(authorization)
 
-variation = { 'prec' : 0}
+#variation = { 'prec' : 0}
 
 bouton = 1
 
-@every(seconds=20)
+@every(minutes=10)
 def refresh_data():
     parcours(bouton)
 
@@ -31,6 +31,7 @@ def parcours(bouton):
     logo = tingbot.app.settings['Module']["P"+str(bouton)][2]
     titre = tingbot.app.settings['Module']["P"+str(bouton)][1]
     value = devList.lastData('MeteoNicho')[tingbot.app.settings['Module']["P"+str(bouton)][3]][tingbot.app.settings['Module']["P"+str(bouton)][4]]
+    value_prec = tingbot.app.settings['Module']["P"+str(bouton)][6]
     temp = str(devList.lastData('MeteoNicho')[tingbot.app.settings['Module']["P"+str(bouton)][3]][tingbot.app.settings['Module']["P"+str(bouton)][4]]) + " " + tingbot.app.settings['Module']["P"+str(bouton)][5]
     
 
@@ -53,18 +54,19 @@ def parcours(bouton):
     
     # Partie concernant la variation de temperature par rapport a la precedente
     
-    #screen.text(str(value) + str(variation['prec']), xy=(190,180), font_size=25, color='black')
+    #screen.text(str(value) + str(value_prec['prec']), xy=(190,180), font_size=25, color='black')
     
-    if value > variation['prec']:
-        screen.text("Hausse !", xy=(220,180), font_size=25, color='black')
-    elif value < variation['prec']:
-        screen.text("Baisse !", xy=(220,180), font_size=25, color='black')
+    if value > value_prec['prec']:
+        screen.image("monte.png", xy=(220,180), max_width=120, max_height=120)
+    elif value < value_prec['prec']:
+        screen.image("descend.png", xy=(220,180), max_width=120, max_height=120)
     else:
-        screen.text("Stable", xy=(220,180), font_size=25, color='black')
+        screen.image("stable.png", xy=(220,180), max_width=120, max_height=120)
     
-    variation['prec'] = value
+    value_prec['prec'] = value
+    #tingbot.app.settings['Module']["P"+str(bouton)][6] = "{'prec' : "+int(value)+"}"
     
-    screen.image(logo,xy=(140,180),max_width=60,max_height=100)
+    screen.image(logo,xy=(130,180),max_width=60,max_height=100)
     screen.text(titre,xy=(160,20),color='black', font_size=25)
     screen.text(temp,xy=(155,100),color=couleur,font_size=80)
     
@@ -77,7 +79,7 @@ def parcours(bouton):
     screen.text(' A propos de NetAtmoTingBot',xy=(70,235),font_size=10, color='red')
     screen.update()
     
-@after(seconds=3)
+@after(minutes=10)
 def on_start():
     parcours(1)
     
